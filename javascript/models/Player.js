@@ -34,5 +34,5 @@ export function createNewPlayer(){
   });
 }
 
-
+//commentaire test
 export default Player;
