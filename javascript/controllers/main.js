@@ -157,7 +157,6 @@ let gameIsStarted = false;
 let currentVolley = []
 const playersArray = []
 let currentPlayerIndex = 0;
-createNewPlayer();
 
 // Fonction pour gérer le score au clic
 export function returnScoreOfClick() {
@@ -183,7 +182,11 @@ export function returnScoreOfClick() {
   }
 }
 
-
+let formAddPlayer = document.querySelector("#formAddPlayer");
+formAddPlayer.addEventListener("submit", (event) => {
+  event.preventDefault();
+  createNewPlayer()
+})
 
 // écouteur d'event sur le bouton Start pour lancer le décompte
 const startGameButton = document.querySelector("#startButton");
@@ -303,4 +306,4 @@ function restartGame(){
   startGame()
 }
 
-export {inputName, playersArray, currentPlayerIndex, displayPlayersDiv}
+export {inputName, playersArray, currentPlayerIndex, displayPlayersDiv, show, startGameButton } 

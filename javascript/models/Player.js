@@ -1,5 +1,5 @@
 import { displayPlayers } from "../views/views.js";
-import { inputName, playersArray, currentPlayerIndex } from "../controllers/main.js";
+import { inputName, playersArray, currentPlayerIndex, show, startGameButton } from "../controllers/main.js";
 
 
 class Player {
@@ -14,25 +14,31 @@ class Player {
 }
 
 export function createNewPlayer(){
-  // retire le comportement par défaut du form, appel de la fonction qui crée un nouveau joueur
-  let formAddPlayer = document.querySelector("#formAddPlayer");
-  formAddPlayer.addEventListener("submit", (event) => {
-    
-    event.preventDefault();
-    //pour chaques submit, on créer une nouvelle instance de Player avec name = valeur du champ envoyé
-    let newPlayer = new Player(inputName.value);
-    //on push le nouveau player dans le tableau des joueurs
-    playersArray.push(newPlayer);
-    //vide le champ du formulaire
-    inputName.value = "";
-    //on définie le 1er joueur du tableau comme joueur actuel 
-    playersArray[currentPlayerIndex].currentPlayer = true
-    console.log(newPlayer);
-    console.log(playersArray);
-    //affiche les joueurs du tableau playersArray
-    displayPlayers()
-  });
+
+    console.log(playersArray)
+
+    if (playersArray.length === 1){
+      show(startGameButton)
+    }
+
+    try {
+      // Vérifier si le champ de nom est vide
+      if (inputName.value.trim() === "") {
+        throw new Error("Le nom du joueur ne peut pas être vide.");
+      }
+      if (inputName.value != "") {
+        let newPlayer = new Player(inputName.value);
+        playersArray.push(newPlayer);
+        inputName.value = "";
+        playersArray[currentPlayerIndex].currentPlayer = true;
+      }
+      displayPlayers();
+
+    } catch (error) {
+      // Afficher une alerte si une erreur est levée
+      alert(error.message); 
+    }
+
 }
 
-//commentaire test
 export default Player;
