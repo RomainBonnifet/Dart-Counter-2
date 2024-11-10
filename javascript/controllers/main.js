@@ -182,8 +182,10 @@ export function returnScoreOfClick() {
   }
 }
 
-let formAddPlayer = document.querySelector("#formAddPlayer");
-formAddPlayer.addEventListener("submit", (event) => {
+let playerForm = document.querySelector("#formAddPlayer");
+playerForm.addEventListener("submit", (event) => {
+  console.log("prevent default");
+  
   event.preventDefault();
   createNewPlayer()
 })
@@ -198,6 +200,7 @@ function startGame() {
     gameIsStarted = true;
     returnScoreOfClick();
     hide(startGameButton);
+    hide(playerForm)
     show(missedShotBtn)
     infoGame.innerHTML = `Au tour de ${playersArray[currentPlayerIndex].name}`
   }
@@ -306,4 +309,4 @@ function restartGame(){
   startGame()
 }
 
-export {inputName, playersArray, currentPlayerIndex, displayPlayersDiv, show, startGameButton } 
+export {inputName, playersArray, currentPlayerIndex, displayPlayersDiv, show, hide, startGameButton } 

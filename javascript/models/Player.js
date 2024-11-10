@@ -1,5 +1,7 @@
 import { displayPlayers } from "../views/views.js";
-import { inputName, playersArray, currentPlayerIndex, show, startGameButton } from "../controllers/main.js";
+import { inputName, playersArray, currentPlayerIndex, show, hide, startGameButton } from "../controllers/main.js";
+
+
 
 
 class Player {
@@ -17,7 +19,7 @@ export function createNewPlayer(){
 
     console.log(playersArray)
 
-    if (playersArray.length === 1){
+    if (playersArray.length >= 0 ){
       show(startGameButton)
     }
 
