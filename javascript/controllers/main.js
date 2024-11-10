@@ -142,7 +142,7 @@ const targetElementPoint = [
 ]
 
 let inputName = document.querySelector("#playerName");
-let displayPlayersDiv = document.querySelector("#playersTable");
+let displayPlayersContainer = document.querySelector(".displayPlayersContainer");
 let infoGame = document.querySelector(".infoGame");
 
 function hide(element) {
@@ -309,4 +309,4 @@ function restartGame(){
   startGame()
 }
 
-export {inputName, playersArray, currentPlayerIndex, displayPlayersDiv, show, hide, startGameButton } 
+export {inputName, playersArray, currentPlayerIndex, displayPlayersContainer, show, hide, startGameButton } 

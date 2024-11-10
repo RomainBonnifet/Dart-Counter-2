@@ -1,7 +1,7 @@
-import {displayPlayersDiv, playersArray} from "../controllers/main.js"
+import {displayPlayersContainer, playersArray} from "../controllers/main.js"
 
 export function displayPlayers() {
-    displayPlayersDiv.innerHTML = "";
+    displayPlayersContainer.innerHTML = "";
     playersArray.forEach((player) => {
       let div = document.createElement("div");
       if (player.currentPlayer) {
@@ -11,7 +11,6 @@ export function displayPlayers() {
         ${player.score} points.
         <br>Fléchettes en main : ${player.volley} `;
 
-
       } else {
         div.innerHTML =
 
@@ -19,9 +18,7 @@ export function displayPlayers() {
         ${player.score} points.`;
 
       }
-
-      div.setAttribute("class", "displayPlayerCell")
-      displayPlayersDiv.appendChild(div);
-
+      div.setAttribute("class", "displayPlayersDiv")
+      displayPlayersContainer.appendChild(div);
     });
 }

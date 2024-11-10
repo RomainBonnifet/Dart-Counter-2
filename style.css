@@ -18,7 +18,7 @@ body {
     padding: 0;
 }
 .container {
-    background-color: #323274;
+    background-color: #4b4b4b;
     height: 100vh;
     display: flex;
     flex-direction: row;
@@ -32,13 +32,6 @@ body {
     align-items: center;
 }
 
-
-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-}
 
 form input {
     background-color: #f0f0f0;
@@ -92,7 +85,7 @@ form input {
     align-items: center;
 }
 
-.displayPlayers {
+.displayPlayersContainer {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -103,7 +96,7 @@ form input {
     width: 500px;;
 }
 
-.displayPlayerCell{
+.displayPlayersDiv{
     border: 2px solid #e4e4e4;
     margin: 5px;
 }
