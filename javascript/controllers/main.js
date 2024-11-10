@@ -144,6 +144,7 @@ const targetElementPoint = [
 let inputName = document.querySelector("#playerName");
 let displayPlayersContainer = document.querySelector(".displayPlayersContainer");
 let infoGame = document.querySelector(".infoGame");
+let displayCurrentVolley = document.querySelector('.currentScores')
 
 function hide(element) {
   element.style.display = "none";
@@ -170,6 +171,7 @@ export function returnScoreOfClick() {
             playersArray[currentPlayerIndex].volley--
             currentVolley.push(targetElementValue);
             displayPlayers()
+            displayCurrentVolley.innerHTML = currentVolley
           }
           
           if (currentVolley.length === 3) {
@@ -216,7 +218,7 @@ function missedScore(){
   //On push un score fléchette de zéro
   if (currentVolley.length < 3){
     currentVolley.push(0)
-    console.log(currentVolley);  
+    displayCurrentVolley.innerHTML = currentVolley
   }
   //Déclenche la suite du script si le joueur a lancé ses 3 fléchettes
   if (currentVolley.length === 3) {
@@ -273,6 +275,7 @@ function validationVolley() {
     subtractScore()
     displayPlayers()
     show(missedShotBtn)
+    displayCurrentVolley.innerHTML = ""
   });
 
   const noButton = document.createElement("button");
@@ -282,6 +285,7 @@ function validationVolley() {
     playersArray[currentPlayerIndex].volley = 3;
     displayPlayers();
     show(missedShotBtn);
+    displayCurrentVolley.innerHTML = "" 
   });
 
   // Effacer le contenu actuel du span

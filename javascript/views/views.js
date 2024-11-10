@@ -22,3 +22,4 @@ export function displayPlayers() {
       displayPlayersContainer.appendChild(div);
     });
 }
+
