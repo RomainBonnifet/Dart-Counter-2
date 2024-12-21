@@ -123,8 +123,18 @@ td {
     width: auto;
 }
 
-use:hover, .circleCenter:hover {
-    fill: #ffd500;
+g.board_part > path,
+path.board_part_circle {
+    transition: fill 0.2s linear;
+}
+
+g.board_part > path:hover,
+path.board_part_circle:hover {
+    fill : #381a82
+}
+
+.numbers{
+    pointer-events: none;
 }
 
 .current-player {

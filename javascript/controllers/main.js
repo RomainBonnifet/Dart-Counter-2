@@ -171,7 +171,7 @@ export function returnScoreOfClick() {
             playersArray[currentPlayerIndex].volley--
             currentVolley.push(targetElementValue);
             displayPlayers()
-            displayCurrentVolley.innerHTML = currentVolley
+            displayCurrentVolley.innerText = currentVolley
           }
           
           if (currentVolley.length === 3) {
@@ -204,7 +204,7 @@ function startGame() {
     hide(startGameButton);
     hide(playerForm)
     show(missedShotBtn)
-    infoGame.innerHTML = `Au tour de ${playersArray[currentPlayerIndex].name}`
+    infoGame.innerText = `Au tour de ${playersArray[currentPlayerIndex].name}`
   }
 }
 
@@ -218,7 +218,7 @@ function missedScore(){
   //On push un score fléchette de zéro
   if (currentVolley.length < 3){
     currentVolley.push(0)
-    displayCurrentVolley.innerHTML = currentVolley
+    displayCurrentVolley.innerText = currentVolley
   }
   //Déclenche la suite du script si le joueur a lancé ses 3 fléchettes
   if (currentVolley.length === 3) {
@@ -239,7 +239,7 @@ function subtractScore(){
   checkScore(playersArray[currentPlayerIndex].score, volleyScore)
 
   defineNextPlayer(playersArray)
-  infoGame.innerHTML = `Au tour de ${playersArray[currentPlayerIndex].name}`
+  infoGame.innerText = `Au tour de ${playersArray[currentPlayerIndex].name}`
 }
 
 function checkScore(score, lastScore){
@@ -275,7 +275,7 @@ function validationVolley() {
     subtractScore()
     displayPlayers()
     show(missedShotBtn)
-    displayCurrentVolley.innerHTML = ""
+    displayCurrentVolley.innerText = ""
   });
 
   const noButton = document.createElement("button");
@@ -285,11 +285,12 @@ function validationVolley() {
     playersArray[currentPlayerIndex].volley = 3;
     displayPlayers();
     show(missedShotBtn);
-    displayCurrentVolley.innerHTML = "" 
+    displayCurrentVolley.innerText = ""
+    span.innerText = `Au tour de ${playersArray[currentPlayerIndex].name}`
   });
 
   // Effacer le contenu actuel du span
-  span.innerHTML = "";
+  span.innerText = "";
 
   // Ajouter la question et les boutons dans le span
   span.appendChild(question);
