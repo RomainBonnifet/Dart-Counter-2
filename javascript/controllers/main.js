@@ -173,7 +173,7 @@ export function returnScoreOfClick() {
             displayPlayers()
             displayCurrentVolley.innerText = currentVolley
           }
-          
+
           if (currentVolley.length === 3) {
             validationVolley();
             return
