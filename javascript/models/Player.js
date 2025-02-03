@@ -19,7 +19,7 @@ export function createNewPlayer(){
 
     console.log(playersArray)
 
-    if (playersArray.length >= 0 ){
+    if (playersArray.length >= 1 ){
       show(startGameButton)
     }
 
@@ -28,7 +28,7 @@ export function createNewPlayer(){
       if (inputName.value.trim() === "") {
         throw new Error("Le nom du joueur ne peut pas être vide.");
       }
-      if (inputName.value != "") {
+      if (inputName.value !== "") {
         let newPlayer = new Player(inputName.value);
         playersArray.push(newPlayer);
         inputName.value = "";

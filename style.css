@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 
 h1 {
-    text-align: center;
     font-family: 'Oswald', sans-serif;
-    margin: 50px;
-    font-size: 4.2em;
+    font-size: 2em;
+    margin: 0 5px;
+    color: #0f0d0d;
+    font-family: "Pixelify Sans", serif;
+    font-weight: 400;
 }
 
 .cible:hover {
@@ -12,32 +16,61 @@ h1 {
 
 body {
     background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f0d0d;
     color: #e4e4e4;
-    margin: 0;
-    padding: 0;
+
 }
-.container {
-    background-color: #4b4b4b;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+
 .cible  {
-    width: 50vw;
-    margin: 10px;
+    margin: 10px 0;
+    align-self: center;
+}
+
+svg {
+    height: 730px;
+    width: 730px;
+}
+
+g.cible {
+    width: fit-content;
+}
+
+.container {
+    height:95vh;
+    width: 95vw;
+    margin: 0 auto;
+    background-color: #6A89CC;
+    border: 8px solid;
+    border-color: #FFFFFF;
+    border-radius: 60px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+
 }
 
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 
 form input {
-    background-color: #f0f0f0;
-    color: #0f0d0d;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.2em;
+    font-family: "Pixelify Sans", serif;
+    color: #C0C0C0;
+    padding: 0 10px;
+    border-radius: 50px;
+    font-size: 25px;
+    text-align: end;
+    height: 70%;
+}
+
+input::placeholder {
+    font-family: "Pixelify Sans", serif;
+    color: #C0C0C0;
+    font-size: 25px;
     text-align: center;
 }
 
@@ -49,13 +82,27 @@ form input {
     display: block;
 }
 
-.addPlayers {
+.addPlayersContainer {
     margin: 5px;
+    width: 95%;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border-radius: 90px;
 }
 
 .addPlayerBtn {
+    font-family: "Pixelify Sans", serif;
+    cursor: pointer;
+    font-size: 25px;
     width: auto;
-    margin: 10px auto;
+    margin: 5px;
+    background-color: #0f0d0d;
+    color: #f0f0f0;
+    border-radius: 50px;
 }
 
 #playerName {
@@ -69,12 +116,6 @@ form input {
 }
 
 
-.playersContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 40%;
-}
 
 .buttonContainer {
     position: relative;
@@ -85,50 +126,21 @@ form input {
     align-items: center;
 }
 
-.displayPlayersContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-    height: auto;
-    margin: 10px;
-    width: 500px;;
-}
 
 .displayPlayersDiv{
     border: 2px solid #e4e4e4;
     margin: 5px;
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 30px;
-    text-align: center;
-    overflow: auto;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.3em;
-    font-weight: 300;
-    width: 100%;
-}
 
-td {
-    border: 1px solid #0f0d0d;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    padding: 10px;
-    color: #0f0d0d;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.1em;
-    width: auto;
-}
 
-g.board_part > path,
+
+g.dartboard_part > path,
 path.board_part_circle {
     transition: fill 0.2s linear;
 }
 
-g.board_part > path:hover,
+g.dartboard_part > path:hover,
 path.board_part_circle:hover {
     fill : #381a82
 }
@@ -141,13 +153,6 @@ path.board_part_circle:hover {
     color: #ffd500;
 }
 
-.displayContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: #0f0f0f;
-    border:5px solid #f0f0f0;
-    border-radius: 10px;
-}
 
 
 
@@ -186,16 +191,3 @@ span.infoGame {
     color: #f0f0f0;
 }
 
-
-@media screen and (max-width:1200px) {
-    .container {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .cible {
-        width: 60vh;
-    }
-}
