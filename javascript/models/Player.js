@@ -1,5 +1,5 @@
 import { displayPlayers } from "../views/views.js";
-import { inputName, playersArray, currentPlayerIndex, show, hide, startGameButton } from "../controllers/main.js";
+import { inputName, playersArray, currentPlayerIndex, show, hide, startGameButton, infoGame } from "../controllers/main.js";
 
 
 
@@ -17,12 +17,6 @@ class Player {
 
 export function createNewPlayer(){
 
-    console.log(playersArray)
-
-    if (playersArray.length >= 1 ){
-      show(startGameButton)
-    }
-
     try {
       // Vérifier si le champ de nom est vide
       if (inputName.value.trim() === "") {
@@ -30,11 +24,16 @@ export function createNewPlayer(){
       }
       if (inputName.value !== "") {
         let newPlayer = new Player(inputName.value);
+        console.log(newPlayer);
         playersArray.push(newPlayer);
         inputName.value = "";
         playersArray[currentPlayerIndex].currentPlayer = true;
       }
       displayPlayers();
+      if (playersArray.length >= 1 ){
+        show(startGameButton)
+      }
+  
 
     } catch (error) {
       // Afficher une alerte si une erreur est levée

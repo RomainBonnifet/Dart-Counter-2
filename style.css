@@ -47,7 +47,7 @@ g.cible {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    justify-content: flex-start;
 }
 
 form {
@@ -75,16 +75,21 @@ input::placeholder {
 }
 
 .hidden {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease, visibility 4s ease;
 }
 
-.display {
-    display: block;
+.show {
+    visibility: visible;
+    transition: opacity 2s ease, visibility 4s ease;
+    opacity: 1;
 }
 
 .addPlayersContainer {
     margin: 5px;
     width: 95%;
+    height: 50px;
     align-self: center;
     display: flex;
     flex-direction: row;
@@ -97,24 +102,76 @@ input::placeholder {
 .addPlayerBtn {
     font-family: "Pixelify Sans", serif;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 20px;
     width: auto;
     margin: 5px;
+    padding: 5px 10px;
     background-color: #0f0d0d;
     color: #f0f0f0;
     border-radius: 50px;
 }
 
-#playerName {
-    width: 70%;
+.displayContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
-#startButton, #missedBtn {
-    color: #373794;
-    font-family: 'IBM Plex Mono', monospace;
-    border-radius: 50%;
+.displayPlayersContainer, .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.displayPlayersContainer {
+    overflow-y: scroll;
+    max-height: 700px;
+    margin-top: 20px;
+}
+
+.displayPlayersContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.displayPlayersContainer::-webkit-scrollbar-thumb {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.displayPlayersCell {
+    box-shadow: inset 0 0 0 6px white;
+    border-radius: 30px;
+    font-family: "Pixelify Sans", serif;
+    font-size: 30px;
+    margin-top: 15px;
+    width: 350px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.infoGame {
+    box-shadow: inset 0 0 0 8px white;
+    border-radius: 50px;
+    height: fit-content;
+    font-family: "Pixelify Sans", serif;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 50px;
+    width: 380px;
+    padding: 20px 0;
+}
+
+.info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 60px;
+}
 
 
 .buttonContainer {
@@ -124,16 +181,32 @@ input::placeholder {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 }
 
-
-.displayPlayersDiv{
-    border: 2px solid #e4e4e4;
-    margin: 5px;
+#startButton, #missedBtn {
+    position: absolute;
+    background-color: #4A69BD;
+    color: #1E3799;
+    box-shadow: inset 0 0 0 8px #1E3799;
+    font-family: "Pixelify Sans", serif;
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 50px;
+    border: none;
+    width: 380px;
+    height: fit-content;
+    padding: 20px 0;
+    margin-top: 50px;
+    cursor: pointer;
 }
 
-
-
+#missedBtn {
+    background-color: #9747FF;
+    color: #4A1F82;
+    box-shadow: inset 0 0 0 8px #4A1F82;
+}
 
 g.dartboard_part > path,
 path.board_part_circle {
@@ -153,41 +226,4 @@ path.board_part_circle:hover {
     color: #ffd500;
 }
 
-
-
-
-#startButton, #missedBtn {
-    color: #0f0d0d;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.2em;
-    text-align: center;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-span.infoGame {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.2em;
-    text-align: center;
-    width: 100%;
-    margin: 10px auto;
-}
-
-.toggleSound {
-    position: absolute;
-    bottom : 5px;
-    left : 5px;
-    color: #f0f0f04a;
-}
-
-.on {
-    color: #f0f0f0;
-}
-
-.selectedSound {
-    color: #f0f0f0;
-}
 

@@ -151,7 +151,9 @@ function hide(element) {
 }
 
 function show(element) {
-  element.style.display = "block";
+  element.classList.remove("hidden");
+  element.classList.add("show"); 
+  console.log("show");
 }
 
 let gameIsStarted = false;
@@ -169,14 +171,14 @@ export function returnScoreOfClick() {
       element.addEventListener("click", () => {
 
         let targetElementValue = targetElementPoint[index];
+        console.log(targetElementValue);
+        
 
         if (playersArray[currentPlayerIndex].volley > 0) {
 
           playersArray[currentPlayerIndex].volley--
           currentVolley.push(targetElementValue);
-          displayPlayers()
-          displayCurrentVolley.innerText = currentVolley
-
+          updateCurrentPlayerScores()
         }
 
         if (currentVolley.length === 3) {
@@ -218,11 +220,10 @@ missedShotBtn.addEventListener('click', missedScore)
 function missedScore(){
   // on retire une fléchette au current player
   playersArray[currentPlayerIndex].volley--
-  displayPlayers()
+  updateCurrentPlayerScores()
   //On push un score fléchette de zéro
   if (currentVolley.length < 3){
     currentVolley.push(0)
-    displayCurrentVolley.innerText = currentVolley
   }
   //Déclenche la suite du script si le joueur a lancé ses 3 fléchettes
   if (currentVolley.length === 3) {
@@ -269,17 +270,14 @@ function sumVolleyArray(volley) {
 function validationVolley() {
 
   const span = infoGame;
-  const question = document.createElement("p");
-  question.innerText = `Voulez-vous valider la série ${currentVolley}`;
-  hide(missedShotBtn)
+  span.innerText = `Valider la série ${currentVolley}`;
 
   const yesButton = document.createElement("button");
   yesButton.innerText = "Oui";
   yesButton.addEventListener("click", () => {
     subtractScore()
-    displayPlayers()
+    updateCurrentPlayerScores()
     show(missedShotBtn)
-    displayCurrentVolley.innerText = ""
   });
 
   const noButton = document.createElement("button");
@@ -287,17 +285,12 @@ function validationVolley() {
   noButton.addEventListener("click", () => {
     currentVolley.length = 0;
     playersArray[currentPlayerIndex].volley = 3;
-    displayPlayers();
+    updateCurrentPlayerScores();
     show(missedShotBtn);
-    displayCurrentVolley.innerText = ""
     span.innerText = `Au tour de ${playersArray[currentPlayerIndex].name}`
   });
 
-  // Effacer le contenu actuel du span
-  span.innerText = "";
-
   // Ajouter la question et les boutons dans le span
-  span.appendChild(question);
   span.appendChild(yesButton);
   span.appendChild(noButton);
 }
@@ -318,4 +311,5 @@ function restartGame(){
   startGame()
 }
 
-export {inputName, playersArray, currentPlayerIndex, displayPlayersContainer, show, hide, startGameButton } 
+
+export {inputName, playersArray, currentPlayerIndex, displayPlayersContainer, show, hide, startGameButton, infoGame, gameIsStarted } 

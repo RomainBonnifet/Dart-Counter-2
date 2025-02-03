@@ -1,25 +1,23 @@
-import {displayPlayersContainer, playersArray} from "../controllers/main.js"
+import {displayPlayersContainer, playersArray, gameIsStarted} from "../controllers/main.js"
 
-export function displayPlayers() {
-    displayPlayersContainer.innerHTML = "";
-    playersArray.forEach((player) => {
-      let div = document.createElement("div");
-      if (player.currentPlayer) {
-        div.innerHTML =
-
-        `${player.name} :
-        ${player.score} points.
-        <br>Fléchettes en main : ${player.volley} `;
-
-      } else {
-        div.innerHTML =
-
-        `${player.name} :
+export function displayLastPlayer() {
+  if (gameIsStarted) {
+    return;
+  }
+  let player = playersArray[playersArray.length - 1];
+  let div = document.createElement("div");
+  if (player.currentPlayer) {
+    div.innerHTML = `${player.name} :
         ${player.score} points.`;
-
-      }
-      div.setAttribute("class", "displayPlayersDiv")
-      displayPlayersContainer.appendChild(div);
-    });
+  } else {
+    div.innerText = `${player.name} :
+        ${player.score} points.`;
+  }
+  div.classList.add("displayPlayersCell");
+  div.classList.add("hidden");
+  displayPlayersContainer.appendChild(div);
+  setTimeout(() => {
+    div.classList.add("show");
+  }, 500);
 }
 
