@@ -144,7 +144,7 @@ const targetElementPoint = [
 let inputName = document.querySelector("#playerName");
 let displayPlayersContainer = document.querySelector(".displayPlayersContainer");
 let infoGame = document.querySelector(".infoGame");
-let displayCurrentVolley = document.querySelector('.currentScores')
+let displayCurrentVolley = document.querySelectorAll('.currentScores')
 
 function hide(element) {
   element.style.display = "none";
@@ -178,7 +178,6 @@ export function returnScoreOfClick() {
 
           playersArray[currentPlayerIndex].volley--
           currentVolley.push(targetElementValue);
-          updateCurrentPlayerScores()
         }
 
         if (currentVolley.length === 3) {
@@ -186,6 +185,9 @@ export function returnScoreOfClick() {
           return
         }
       });
+    }
+    if (!gameIsStarted) {
+      element.removeEventListener("click", () => { });
     }
   });
 }
@@ -219,7 +221,6 @@ missedShotBtn.addEventListener('click', missedScore)
 function missedScore(){
   // on retire une fléchette au current player
   playersArray[currentPlayerIndex].volley--
-  updateCurrentPlayerScores()
   //On push un score fléchette de zéro
   if (currentVolley.length < 3){
     currentVolley.push(0)
@@ -240,20 +241,39 @@ function subtractScore(){
     playersArray[currentPlayerIndex].volley = 3
   }
 
+  updateDisplay()
+
   checkScore(playersArray[currentPlayerIndex].score, volleyScore)
 
   defineNextPlayer(playersArray)
   infoGame.innerText = `Au tour de ${playersArray[currentPlayerIndex].name}`
 }
 
+function updateDisplay(){
+  displayCurrentVolley.forEach((element, index) => {
+    element.innerText = currentVolley[index]
+  })
+
+  displayPlayersContainer.innerHTML = ""
+  playersArray.forEach((player) => {
+    const divPlayer = document.createElement("div");
+    divPlayer.classList.add("displayPlayersCell");
+    divPlayer.innerText = `${player.name} : ${player.score}`;
+    displayPlayersContainer.appendChild(divPlayer);
+  })
+}
+
+
 function checkScore(score, lastScore){
   if (score < 0) {
     playersArray[currentPlayerIndex].score += lastScore
     alert("Vous devez finir par un score exact. Au tour du joueur suivant")
+    updateDisplay()
   }
   if (score === 0){
-    alert(`${playersArray[currentPlayerIndex].name} a gagné !`)
     restartGame()
+    alert(`${playersArray[currentPlayerIndex].name} a gagné !`)
+    gameIsStarted = false
   }
 }
 
@@ -275,7 +295,7 @@ function validationVolley() {
   yesButton.innerText = "Oui";
   yesButton.addEventListener("click", () => {
     subtractScore()
-    updateCurrentPlayerScores()
+
     show(missedShotBtn)
   });
 
@@ -284,7 +304,7 @@ function validationVolley() {
   noButton.addEventListener("click", () => {
     currentVolley.length = 0;
     playersArray[currentPlayerIndex].volley = 3;
-    updateCurrentPlayerScores();
+
     show(missedShotBtn);
     span.innerText = `Au tour de ${playersArray[currentPlayerIndex].name}`
   });
@@ -301,13 +321,20 @@ function defineNextPlayer(playersArray) {
   playersArray[currentPlayerIndex].currentPlayer = true;
 }
 
+
+
+
 function restartGame(){
   playersArray.forEach((player) => {
     player.score = 301
     player.volley = 3
+    player.currentPlayer = false
+    console.log("j'ai reset les scores");
+    
   })
   currentPlayerIndex = 0
-  startGame()
+  playersArray[currentPlayerIndex].currentPlayer = true
+  updateDisplay()
 }
 
 if (!startGameButton) console.error("Bouton start introuvable");

@@ -1,18 +1,20 @@
-import {displayPlayersContainer, playersArray, gameIsStarted} from "../controllers/main.js"
+import {displayPlayersContainer, playersArray, gameIsStarted, currentPlayerIndex} from "../controllers/main.js"
 
 export function displayLastPlayer() {
   if (gameIsStarted) {
     return;
   }
-  let player = playersArray[playersArray.length - 1];
-  let div = document.createElement("div");
-  div.innerHTML = `${player.name} :
-        ${player.score} points.`;
-  div.classList.add("displayPlayersCell");
-  div.classList.add("hidden");
-  displayPlayersContainer.appendChild(div);
+  const divPlayer = document.createElement("div");
+  divPlayer.classList.add("displayPlayersCell");
+  const lastPlayer = playersArray[playersArray.length - 1];
+  divPlayer.innerText = `${lastPlayer.name} : ${lastPlayer.score}`;
+  displayPlayersContainer.appendChild(divPlayer);
+
+
+
   setTimeout(() => {
-    div.classList.add("show");
+    divPlayer.classList.add("show");
   }, 500);
+  return divPlayer;
 }
 
