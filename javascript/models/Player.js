@@ -1,4 +1,4 @@
-import { displayPlayers } from "../views/views.js";
+import { displayLastPlayer } from "../views/views.js";
 import { inputName, playersArray, currentPlayerIndex, show, hide, startGameButton, infoGame } from "../controllers/main.js";
 
 
@@ -29,7 +29,7 @@ export function createNewPlayer(){
         inputName.value = "";
         playersArray[currentPlayerIndex].currentPlayer = true;
       }
-      displayPlayers();
+      displayLastPlayer();
       if (playersArray.length >= 1 ){
         show(startGameButton)
       }

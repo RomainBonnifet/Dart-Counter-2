@@ -1,6 +1,6 @@
 import Player from "../models/Player.js";
 import { createNewPlayer } from "../models/Player.js";
-import { displayPlayers } from "../views/views.js";
+import { displayLastPlayer } from "../views/views.js";
 
 // Les éléments SVG sélectionnés
 const svgElements = { 
@@ -193,7 +193,6 @@ export function returnScoreOfClick() {
 let playerForm = document.querySelector("#formAddPlayer");
 playerForm.addEventListener("submit", (event) => {
   console.log("prevent default");
-  
   event.preventDefault();
   createNewPlayer()
 })
@@ -310,6 +309,9 @@ function restartGame(){
   currentPlayerIndex = 0
   startGame()
 }
+
+if (!startGameButton) console.error("Bouton start introuvable");
+if (!displayPlayersContainer) console.error("Conteneur joueurs introuvable");
 
 
 export {inputName, playersArray, currentPlayerIndex, displayPlayersContainer, show, hide, startGameButton, infoGame, gameIsStarted } 
